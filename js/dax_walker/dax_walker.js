@@ -2,7 +2,7 @@
 
 import { Position } from '../model/Position.js';
 
-const API_URL = "https://osrs-map.herokuapp.com/getPath";
+const API_URL = "https://dax-api.eternalfarm.net/walker/generatePaths";
 
 const errorMessageMapping = {
     "UNMAPPED_REGION": "Unmapped region",
@@ -21,24 +21,26 @@ export function getPath({start, end, onSuccess, onError}) {
         url: API_URL,
         type: 'POST',
         data: JSON.stringify({
-            "start": {
-                "x": start.x,
-                "y": start.y,
-                "z": start.z
-            },
-            "end": {
-                "x": end.x,
-                "y": end.y,
-                "z": end.z
-            }
+            "requests": [{
+                "start": {
+                    "x": start.x,
+                    "y": start.y,
+                    "z": start.z
+                },
+                "end": {
+                    "x": end.x,
+                    "y": end.y,
+                    "z": end.z
+                }
+            }]
         }),
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-            if (data['pathStatus'] !== "SUCCESS") {
+            if (data[0]['pathStatus'] !== "SUCCESS") {
                 onError(start, end, errorMessageMapping[data['pathStatus']]);
             } else {
-                const path = data['path'];
+                const path = data[0]['path'];
                 const pathPositions = path.map(pos => new Position(pos.x, pos.y, pos.z));
                 onSuccess(pathPositions);
             }
