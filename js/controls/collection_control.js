@@ -18,6 +18,10 @@ import {DreamBotAreasConverter} from '../bot_api_converters/dreambot/dreambot_ar
 import {DreamBotPathConverter} from '../bot_api_converters/dreambot/dreambot_path_converter.js';
 import {DreamBotPolyAreaConverter} from '../bot_api_converters/dreambot/dreambot_polyarea_converter.js';
 
+import {PowBotAreasConverter} from '../bot_api_converters/powbot/powbot_areas_converter.js';
+import {PowBotPathConverter} from '../bot_api_converters/powbot/powbot_path_converter.js';
+import {PowBotPolyAreaConverter} from '../bot_api_converters/powbot/powbot_polyarea_converter.js';
+
 import {TRiBotAreasConverter} from '../bot_api_converters/tribot/tribot_areas_converter.js';
 import {TRiBotPathConverter} from '../bot_api_converters/tribot/tribot_path_converter.js';
 import {TRiBotPolyAreaConverter} from '../bot_api_converters/tribot/tribot_polyarea_converter.js';
@@ -41,18 +45,6 @@ import {QuantumBotAreasConverter} from '../bot_api_converters/quantumbot/quantum
 import {QuantumBotPathConverter} from '../bot_api_converters/quantumbot/quantumbot_path_converter.js';
 import {QuantumBotPolyAreaConverter} from '../bot_api_converters/quantumbot/quantumbot_polyarea_converter.js';
 
-// <option>LostClient</option>
-// <option>DreamBot</option>
-// <option>TRiBot</option>
-// <option>OSBot</option>
-// <option>RuneMate</option>
-// <option>RuneLite</option>
-// <option>RSPeer</option>
-// <option>QuantumBot</option>
-
-import {PowBotAreasConverter} from '../bot_api_converters/powbot/powbot_areas_converter.js';
-import {PowBotPathConverter} from '../bot_api_converters/powbot/powbot_path_converter.js';
-import {PowBotPolyAreaConverter} from '../bot_api_converters/powbot/powbot_polyarea_converter.js';
 var converters = {
     "LostClient": {
         "areas_converter": new LostClientAreasConverter(),
@@ -63,6 +55,11 @@ var converters = {
         "areas_converter": new DreamBotAreasConverter(),
         "path_converter": new DreamBotPathConverter(),
         "polyarea_converter": new DreamBotPolyAreaConverter()
+    },
+    "PowBot": {
+        "areas_converter": new PowBotAreasConverter(),
+        "path_converter": new PowBotPathConverter(),
+        "polyarea_converter": new PowBotPolyAreaConverter()
     },
     "TRiBot": {
         "areas_converter": new TRiBotAreasConverter(),
@@ -93,11 +90,6 @@ var converters = {
         "areas_converter": new QuantumBotAreasConverter(),
         "path_converter": new QuantumBotPathConverter(),
         "polyarea_converter": new QuantumBotPolyAreaConverter()
-    },
-    "PowBot": {
-        "areas_converter": new PowBotAreasConverter(),
-        "path_converter": new PowBotPathConverter(),
-        "polyarea_converter": new PowBotPolyAreaConverter()
     }
 };
 
