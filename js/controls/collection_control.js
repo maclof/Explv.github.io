@@ -10,25 +10,25 @@ import {PolyArea} from '../model/PolyArea.js';
 
 
 // Import converters
-import {OSBotAreasConverter} from '../bot_api_converters/osbot/osbot_areas_converter.js';
-import {OSBotPathConverter} from '../bot_api_converters/osbot/osbot_path_converter.js';
-import {OSBotPolyAreaConverter} from '../bot_api_converters/osbot/osbot_polyarea_converter.js';
-
-import {TRiBotAreasConverter} from '../bot_api_converters/tribot/tribot_areas_converter.js';
-import {TRiBotPathConverter} from '../bot_api_converters/tribot/tribot_path_converter.js';
-import {TRiBotPolyAreaConverter} from '../bot_api_converters/tribot/tribot_polyarea_converter.js';
+import {LostClientAreasConverter} from '../bot_api_converters/lostclient/lostclient_areas_converter.js';
+import {LostClientPathConverter} from '../bot_api_converters/lostclient/lostclient_path_converter.js';
+import {LostClientPolyAreaConverter} from '../bot_api_converters/lostclient/lostclient_polyarea_converter.js';
 
 import {DreamBotAreasConverter} from '../bot_api_converters/dreambot/dreambot_areas_converter.js';
 import {DreamBotPathConverter} from '../bot_api_converters/dreambot/dreambot_path_converter.js';
 import {DreamBotPolyAreaConverter} from '../bot_api_converters/dreambot/dreambot_polyarea_converter.js';
 
+import {TRiBotAreasConverter} from '../bot_api_converters/tribot/tribot_areas_converter.js';
+import {TRiBotPathConverter} from '../bot_api_converters/tribot/tribot_path_converter.js';
+import {TRiBotPolyAreaConverter} from '../bot_api_converters/tribot/tribot_polyarea_converter.js';
+
+import {OSBotAreasConverter} from '../bot_api_converters/osbot/osbot_areas_converter.js';
+import {OSBotPathConverter} from '../bot_api_converters/osbot/osbot_path_converter.js';
+import {OSBotPolyAreaConverter} from '../bot_api_converters/osbot/osbot_polyarea_converter.js';
+
 import {RSPeerAreasConverter} from '../bot_api_converters/rspeer/rspeer_areas_converter.js';
 import {RSPeerPathConverter} from '../bot_api_converters/rspeer/rspeer_path_converter.js';
 import {RSPeerPolyAreaConverter} from '../bot_api_converters/rspeer/rspeer_polyarea_converter.js';
-
-import {QuantumBotAreasConverter} from '../bot_api_converters/quantumbot/quantumbot_areas_converter.js';
-import {QuantumBotPathConverter} from '../bot_api_converters/quantumbot/quantumbot_path_converter.js';
-import {QuantumBotPolyAreaConverter} from '../bot_api_converters/quantumbot/quantumbot_polyarea_converter.js';
 
 import {RuneMateAreasConverter} from '../bot_api_converters/runemate/runemate_areas_converter.js';
 import {RuneMatePathConverter} from '../bot_api_converters/runemate/runemate_path_converter.js';
@@ -37,36 +37,42 @@ import {RuneMatePolyAreaConverter} from '../bot_api_converters/runemate/runemate
 import {RuneLiteAreasConverter} from '../bot_api_converters/runelite/runelite_areas_converter.js';
 import {RuneLitePathConverter} from '../bot_api_converters/runelite/runelite_path_converter.js';
 
+import {QuantumBotAreasConverter} from '../bot_api_converters/quantumbot/quantumbot_areas_converter.js';
+import {QuantumBotPathConverter} from '../bot_api_converters/quantumbot/quantumbot_path_converter.js';
+import {QuantumBotPolyAreaConverter} from '../bot_api_converters/quantumbot/quantumbot_polyarea_converter.js';
+
+// <option>LostClient</option>
+// <option>DreamBot</option>
+// <option>TRiBot</option>
+// <option>OSBot</option>
+// <option>RuneMate</option>
+// <option>RuneLite</option>
+// <option>RSPeer</option>
+// <option>QuantumBot</option>
+
 import {PowBotAreasConverter} from '../bot_api_converters/powbot/powbot_areas_converter.js';
 import {PowBotPathConverter} from '../bot_api_converters/powbot/powbot_path_converter.js';
 import {PowBotPolyAreaConverter} from '../bot_api_converters/powbot/powbot_polyarea_converter.js';
-
-
 var converters = {
-    "OSBot": {
-        "areas_converter": new OSBotAreasConverter(),
-        "path_converter": new OSBotPathConverter(),
-        "polyarea_converter": new OSBotPolyAreaConverter()
-    },
-    "TRiBot": {
-        "areas_converter": new TRiBotAreasConverter(),
-        "path_converter": new TRiBotPathConverter(),
-        "polyarea_converter": new TRiBotPolyAreaConverter()
+    "LostClient": {
+        "areas_converter": new LostClientAreasConverter(),
+        "path_converter": new LostClientPathConverter(),
+        "polyarea_converter": new LostClientPolyAreaConverter()
     },
     "DreamBot": {
         "areas_converter": new DreamBotAreasConverter(),
         "path_converter": new DreamBotPathConverter(),
         "polyarea_converter": new DreamBotPolyAreaConverter()
     },
-    "RSPeer": {
-        "areas_converter": new RSPeerAreasConverter(),
-        "path_converter": new RSPeerPathConverter(),
-        "polyarea_converter": new RSPeerPolyAreaConverter()
+    "TRiBot": {
+        "areas_converter": new TRiBotAreasConverter(),
+        "path_converter": new TRiBotPathConverter(),
+        "polyarea_converter": new TRiBotPolyAreaConverter()
     },
-    "QuantumBot": {
-        "areas_converter": new QuantumBotAreasConverter(),
-        "path_converter": new QuantumBotPathConverter(),
-        "polyarea_converter": new QuantumBotPolyAreaConverter()
+    "OSBot": {
+        "areas_converter": new OSBotAreasConverter(),
+        "path_converter": new OSBotPathConverter(),
+        "polyarea_converter": new OSBotPolyAreaConverter()
     },
     "RuneMate": {
         "areas_converter": new RuneMateAreasConverter(),
@@ -77,6 +83,16 @@ var converters = {
         "areas_converter": new RuneLiteAreasConverter(),
         "path_converter": new RuneLitePathConverter(),
         "polyarea_converter": new RuneLitePathConverter()
+    },
+    "RSPeer": {
+        "areas_converter": new RSPeerAreasConverter(),
+        "path_converter": new RSPeerPathConverter(),
+        "polyarea_converter": new RSPeerPolyAreaConverter()
+    },
+    "QuantumBot": {
+        "areas_converter": new QuantumBotAreasConverter(),
+        "path_converter": new QuantumBotPathConverter(),
+        "polyarea_converter": new QuantumBotPolyAreaConverter()
     },
     "PowBot": {
         "areas_converter": new PowBotAreasConverter(),
