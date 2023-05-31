@@ -73,6 +73,7 @@
         { "name": "Crash Island", "coords": [2914, 2720, 0], "size": "default" },
         { "name": "Creature Creation", "coords": [3038, 4384, 0], "size": "default" },
         { "name": "Crombwick Manor", "coords": [3725, 3358, 0], "size": "default" },
+        { "name": "Daimon's Crater", "coords": [3423, 4081, 0], "size": "default" },
         { "name": "Dark Altar", "coords": [1689, 3877, 0], "size": "default" },
         { "name": "Dark Warriors' Fortress", "coords": [3029, 3630, 0], "size": "default" },
         { "name": "Dark Wizards' Tower", "coords": [2908, 3334, 0], "size": "default" },
