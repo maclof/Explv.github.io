@@ -4,12 +4,17 @@ import {Position} from '../model/Position.js';
 import {Area} from '../model/Area.js';
 import {Path} from '../model/Path.js';
 import {DaxPath} from '../model/DaxPath.js';
+import {EternalPath} from '../model/EternalPath.js';
 import {LostPath} from '../model/LostPath.js';
 import {Areas} from '../model/Areas.js';
 import {PolyArea} from '../model/PolyArea.js';
 
 
 // Import converters
+import {EternalClientAreasConverter} from '../bot_api_converters/eternalclient/eternalclient_areas_converter.js';
+import {EternalClientPathConverter} from '../bot_api_converters/eternalclient/eternalclient_path_converter.js';
+import {EternalClientPolyAreaConverter} from '../bot_api_converters/eternalclient/eternalclient_polyarea_converter.js';
+
 import {LostClientAreasConverter} from '../bot_api_converters/lostclient/lostclient_areas_converter.js';
 import {LostClientPathConverter} from '../bot_api_converters/lostclient/lostclient_path_converter.js';
 import {LostClientPolyAreaConverter} from '../bot_api_converters/lostclient/lostclient_polyarea_converter.js';
@@ -46,6 +51,11 @@ import {QuantumBotPathConverter} from '../bot_api_converters/quantumbot/quantumb
 import {QuantumBotPolyAreaConverter} from '../bot_api_converters/quantumbot/quantumbot_polyarea_converter.js';
 
 var converters = {
+    "EternalClient": {
+        "areas_converter": new EternalClientAreasConverter(),
+        "path_converter": new EternalClientPathConverter(),
+        "polyarea_converter": new EternalClientPolyAreaConverter()
+    },
     "LostClient": {
         "areas_converter": new LostClientAreasConverter(),
         "path_converter": new LostClientPathConverter(),
@@ -101,6 +111,7 @@ export var CollectionControl = L.Control.extend({
     onAdd: function (map) {
         this._path = new Path(this._map);
         this._daxPath = new DaxPath(this._map);
+        this._eternalPath = new EternalPath(this._map);
         this._lostPath = new LostPath(this._map);
         this._areas = new Areas(this._map);
         this._polyArea = new PolyArea(this._map);
@@ -157,6 +168,11 @@ export var CollectionControl = L.Control.extend({
         // Dax Path control
         this._createControl('<img src="/css/images/dax-path-icon.png" alt="Dax Path" title="Dax Path" height="25" width="30">', container, function(e) {
             this._toggleCollectionMode(this._daxPath, "path_converter", e.target);
+        });
+
+        // Eternal Path control
+        this._createControl('<img src="/css/images/eternal-path-icon.png" alt="Eternal Path" title="Eternal Path" height="25" width="30">', container, function(e) {
+            this._toggleCollectionMode(this._eternalPath, "path_converter", e.target);
         });
 
         // Lost Path control
