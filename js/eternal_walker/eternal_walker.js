@@ -2,7 +2,7 @@
 
 import { Position } from '../model/Position.js';
 
-const API_URL = "https://ec-walker.ngrok.dev/path";
+const API_URL = "https://walker.eternalclient.net/path";
 
 const errorMessageMapping = {
     "UNMAPPED_REGION": "Unmapped region",
