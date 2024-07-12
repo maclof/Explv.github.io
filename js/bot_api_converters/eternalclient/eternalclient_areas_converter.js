@@ -9,42 +9,40 @@ export class EternalClientAreasConverter extends OSBotAreasConverter {
     
     constructor() {
         super();
-        this.javaArea = "Area";
-        this.javaPosition = "Tile";
+        this.javaArea = "RectArea";
+        this.javaPosition = "WorldTile";
     }
     
     /*
     API Doc:
-        https://dreambot.org/javadocs/org/dreambot/api/methods/map/Area.html
-        https://dreambot.org/javadocs/org/dreambot/api/methods/map/Tile.html
+        https://eternalclient.ams3.cdn.digitaloceanspaces.com/javadocs/1.1.1/net/eternalclient/api/wrappers/map/RectArea.html
+        https://eternalclient.ams3.cdn.digitaloceanspaces.com/javadocs/1.1.1/net/eternalclient/api/wrappers/map/WorldTile.html
 
-    Area(int x1, int y1, int x2, int y2)
-    Area(int x1, int y1, int x2, int y2, int z)
-    Area(Tile ne, Tile sw)
+    RectArea(int x1, int y1, int x2, int y2)
+    RectArea(int x1, int y1, int x2, int y2, int z)
+    RectArea(Tile ne, Tile sw)
     
-    Tile(int x, int y) 
-    Tile(int x, int y, int z)
+    WorldTile(int x, int y)
+    WorldTile(int x, int y, int z)
     */
     fromJava(text, areas) {        
         areas.removeAll();
         text = text.replace(/\s/g, '');
-        
-        var areasPattern = ``
-        
-        var areasPattern = `(?:new${this.javaArea}\\((\\d+,\\d+,\\d+,\\d+(?:,\\d+)?)\\)|\\(new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\),new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\)\\))`;
-        var re = new RegExp(areasPattern,"mg");
-        var match;
+
+        const areasPattern = `(?:new${this.javaArea}\\((\\d+,\\d+,\\d+,\\d+(?:,\\d+)?)\\)|\\(new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\),new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\)\\))`;
+        const re = new RegExp(areasPattern,"mg");
+        let match;
         while ((match = re.exec(text))) {
             if (match[1] !== undefined) {
-                var values = match[1].split(",");
-                var z = values.length == 4 ? 0 : values[4];
+                const values = match[1].split(",");
+                const z = values.length === 4 ? 0 : values[4];
                 areas.add(new Area(new Position(values[0], values[1], z), new Position(values[2], values[3], z)));
             } else {
-                var pos1Values = match[2].split(",");
-                var pos1Z = pos1Values.length == 2 ? 0 : pos1Values[2];
+                const pos1Values = match[2].split(",");
+                const pos1Z = pos1Values.length === 2 ? 0 : pos1Values[2];
 
-                var pos2Values = match[3].split(",");
-                var pos2Z = pos2Values.length == 2 ? 0 : pos2Values[2];
+                const pos2Values = match[3].split(",");
+                const pos2Z = pos2Values.length === 2 ? 0 : pos2Values[2];
                 
                 areas.add(new Area(new Position(pos1Values[0], pos1Values[1], pos1Z), new Position(pos2Values[0], pos2Values[1], pos2Z)));
             }
@@ -52,7 +50,7 @@ export class EternalClientAreasConverter extends OSBotAreasConverter {
     }
     
     toJavaSingle(area) {
-        if (area.startPosition.z == 0) {
+        if (area.startPosition.z === 0) {
             return `new ${this.javaArea}(${area.startPosition.x}, ${area.startPosition.y}, ${area.endPosition.x}, ${area.endPosition.y})`;
         }
         return `new ${this.javaArea}(${area.startPosition.x}, ${area.startPosition.y}, ${area.endPosition.x}, ${area.endPosition.y}, ${area.endPosition.z})`;
