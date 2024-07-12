@@ -8,26 +8,26 @@ export class EternalClientPathConverter extends OSBotPathConverter {
 
     constructor() {
         super();
-        this.javaArea = "Area";
-        this.javaPosition = "Tile";
+        this.javaArea = "RectArea";
+        this.javaPosition = "WorldTile";
     }
     
     /*
     API Doc:
-        https://dreambot.org/javadocs/org/dreambot/api/methods/map/Tile.html
+        https://eternalclient.ams3.cdn.digitaloceanspaces.com/javadocs/1.1.1/net/eternalclient/api/wrappers/map/WorldTile.html
 
-    Tile(int x, int y) 
-    Tile(int x, int y, int z)
+    WorldTile(int x, int y)
+    WorldTile(int x, int y, int z)
     */
     fromJava(text, path) {
         path.removeAll();
         text = text.replace(/\s/g, '');
-        var posPattern = `new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\)`;
-        var re = new RegExp(posPattern, "mg");
-        var match;
+        const posPattern = `new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\)`;
+        const re = new RegExp(posPattern, "mg");
+        let match;
         while ((match = re.exec(text))) {
-            var values = match[1].split(",");
-            var z = values.length == 2 ? 0 : values[2];
+            const values = match[1].split(",");
+            const z = values.length === 2 ? 0 : values[2];
             path.add(new Position(values[0], values[1], z));
         }
     }
